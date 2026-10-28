@@ -14,6 +14,11 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import androidx.compose.ui.graphics.Color
+
+val CustomLightPurple = Color(0xFFFFBB86FC)
+val CustomPurple = Color(0xFF6200EE)
+val CustomDarkPurple = Color(0xFF3700B3)
 
 private val DarkColorScheme = darkColorScheme(
     primary = CustomDarkPurple,
@@ -30,31 +35,15 @@ private val LightColorScheme = lightColorScheme(
 @Composable
 fun Pr5_PR24102_VopilovaVSTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Отключаем dynamicColor, чтобы использовались именно ваши цвета
+    // Dynamic color is available on Android 12+
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
-
-    val view = LocalView.current
-    if (!view.isInEditMode) {
-        SideEffect {
-            val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
-        }
-    }
+    val colorScheme = if (darkTheme) com.example.pr_5_pr_24102_vopilovavs.ui.theme.DarkColorScheme else com.example.pr_5_pr_24102_vopilovavs.ui.theme.LightColorScheme
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography, // Убедитесь, что файл Type.kt на месте
+        typography = Typography,
         content = content
     )
 }

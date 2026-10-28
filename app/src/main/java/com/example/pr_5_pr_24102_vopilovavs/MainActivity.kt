@@ -1,4 +1,6 @@
 package com.example.pr_5_pr_24102_vopilovavs
+
+import com.example.pr_5_pr_24102_vopilovavs.ui.theme.Pr5_PR24102_VopilovaVSTheme
 import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -6,10 +8,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.pr_5_pr_24102_vopilovavs.ui.theme.Pr5_PR24102_VopilovaVSTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
@@ -36,7 +34,9 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.graphics.Color
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,8 +53,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-
 
 @Composable
 fun MessageCard(msg: Message) {
@@ -124,18 +122,19 @@ fun MessageCard(msg: Message) {
         }
 
         if (!msg.isTrainer) {
-            Spacer(modifier = Modifier.width(8.dp))
+            Spacer(modifier = Modifier.width(0.dp))
             Image(
                 painter = painterResource(R.drawable.user_avatar),
                 contentDescription = "User avatar",
                 modifier = Modifier
                     .size(40.dp)
                     .clip(CircleShape)
-                    .border(1.5.dp, MaterialTheme.colorScheme.secondary, CircleShape)
+                    .border(50.dp, MaterialTheme.colorScheme.primary, CircleShape)
             )
         }
     }
 }
+
 @Composable
 fun Conversation(messages: List<Message>) {
     LazyColumn {
@@ -144,7 +143,6 @@ fun Conversation(messages: List<Message>) {
         }
     }
 }
-
 
 @Preview
 @Composable
@@ -162,9 +160,6 @@ fun PreviewConversation() {
     showBackground = true,
     name = "Dark Mode"
 )
-
-
-
 @Composable
 fun PreviewMessageCard() {
     Pr5_PR24102_VopilovaVSTheme {
@@ -172,7 +167,7 @@ fun PreviewMessageCard() {
             MessageCard(
                 msg = Message(
                     author = "Тренер София",
-                    body = "В здоровом теле - здоровый дух.",
+                    body = "В здовором теле - здоровый дух.",
                     isTrainer = true
                 )
             )

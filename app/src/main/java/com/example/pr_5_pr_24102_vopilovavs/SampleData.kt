@@ -1,5 +1,8 @@
 package com.example.pr_5_pr_24102_vopilovavs
 
+
+import com.example.pr_5_pr_24102_vopilovavs.Message
+
 object SampleData {
     val conversationSample = listOf(
         Message(
